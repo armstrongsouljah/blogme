@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogme</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper blue-grey">
+              <a href="#" class="brand-logo">Blogme</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">View</a></li>
+                <li><a href="#">New Item</a></li>
+                <li><a href="#">Logout</a></li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+    <div class="container">
+            <div class="row">
+                <div class="col s12 m6 l6 offset-m3 offset-l3">
+                  <ul class="tabs purple-text">
+                    <li class="tab col s3"><a href="#login">LOGIN</a></li>
+                    <li class="tab col s3"><a class="active" href="#signup">SIGNUP</a></li>
+                  </ul>
+                </div>
+                <div id="login" class="col s12">
+                    <div class="col s12 m6 l6 offset-m3 offset-l3">
+                        <form id="login-form">
+                         <!-- login form -->
+                            <div class="input-field col s12">
+                             <input id="l_username" type="text" class="validate">
+                             <label for="l_username">Username</label>
+                           </div>
+                           <div class="input-field col s12">
+                             <input id="l_password" type="password" class="validate">
+                             <label for="l_password">Password</label>
+                           </div>
+                           <div class="input-field col s12">
+                             <input type="submit" class="btn teal" value="Login"/>
+                           </div>
+                        </form>
+                     </div>
+                </div>
+                <div id="signup" class="col s12">
+                    <div class="col s12 m6 l6 offset-m3 offset-l3">
+                        <form id="signup-form">
+                         <!-- signup form -->
+                            <div class="input-field col s12">
+                             <input id="s_username" type="text" class="validate">
+                             <label for="s_username">Username</label>
+                           </div>
+                           <div class="input-field col s12">
+                             <input id="s_password" type="password" class="validate">
+                             <label for="s_password">Password</label>
+                           </div>
+                           <div class="input-field col s12">
+                             <input type="submit" class="btn teal" value="Signup"/>
+                           </div>
+                        </form>
+                     </div>
+                </div>
+              </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="static/js/index.js"></script>
+</body>
+</html>
