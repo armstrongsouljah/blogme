@@ -60,6 +60,7 @@ blogAddForm.addEventListener('submit', e => {
 
         del.classList.add("btn", "red", "right");
         edit.classList.add("btn", "orange");
+        foot.className = "card-action";
 
 
         card.appendChild(h);
