@@ -40,6 +40,9 @@ blogAddForm.addEventListener('submit', e => {
         const p = $newElem('p');
         const quote = $newElem('blockquote');
         const h = $newElem('h4');
+        const del = $newElem('button');
+        const edit = $newElem('button');
+        const foot = $newElem('div');
 
         // style the item
         card.classList.add("col", "s12", "m4", "l6", "card");
@@ -52,10 +55,19 @@ blogAddForm.addEventListener('submit', e => {
         h.innerText = item.title;
         p.innerText = item.content;
         quote.innerText = `Posted on: ${item.createdAt}`
+        del.innerHTML = `Delete <i class="material-icons right">delete<i>`
+        edit.innerHTML = `Edit <i class="material-icons right">edit<i>`
 
-        card.appendChild(h)
-        card.appendChild(p)
-        card.appendChild(quote)
+        del.classList.add("btn", "red", "right");
+        edit.classList.add("btn", "orange");
+
+
+        card.appendChild(h);
+        card.appendChild(p);
+        card.appendChild(quote);
+        foot.appendChild(edit);
+        foot.appendChild(del);
+        card.appendChild(foot);
 
         // add item to DOM
         let added_item = $elem(`#${item.slug}`)
