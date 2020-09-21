@@ -10,7 +10,10 @@ const itemsContainer = $elem(".blog-container");
 
 const generate_slug = (title) => {
     let split_title = title.split(" ")
-    if(split_title.length>1) return title.replace(/\s/g, '-');
+    if(split_title.length>1) {
+        const new_title = `${split_title[0]} ${split_title[1]} ${Math.floor((Math.random() * 140) + 1)}`
+        return new_title.replace(/\s/g, '-');
+    }
     return `${title}-${Math.floor((Math.random() * 140) + 1)}`
 }
 
@@ -22,7 +25,8 @@ blogAddForm.addEventListener('submit', e => {
         blogItem = {
             title: title.value,
             content: content.value,
-            slug: generate_slug(title.value)
+            slug: generate_slug(title.value),
+            createdAt: new Date().toDateString()
         }
     }
 
@@ -34,20 +38,24 @@ blogAddForm.addEventListener('submit', e => {
     blogItems.forEach(item => {
         const card = $newElem('div')
         const p = $newElem('p');
+        const quote = $newElem('blockquote');
         const h = $newElem('h4');
 
         // style the item
         card.classList.add("col", "s12", "m4", "l6", "card");
         p.className = "flow-text";
+        h.style.textTransform = "uppercase";
         h.className = "center";
         card.setAttribute('id', item.slug)
 
         // add content
         h.innerText = item.title;
         p.innerText = item.content;
+        quote.innerText = `Posted on: ${item.createdAt}`
 
         card.appendChild(h)
         card.appendChild(p)
+        card.appendChild(quote)
 
         // add item to DOM
         let added_item = $elem(`#${item.slug}`)
