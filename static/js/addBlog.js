@@ -5,13 +5,14 @@ const elem = $elem('#new-item');
 const title = $elem('#title');
 const content = $elem('#blog-content');
 const add_modal = M.Modal.getInstance(elem);
-const blogItems = JSON.parse(localStorage.getItem('blogItems'));
+let blogItems = JSON.parse(localStorage.getItem('blogItems'));
 const itemsContainer = $elem(".blog-container");
 const editElem = $elem('#edit-item');
 const edit_modal = M.Modal.getInstance(editElem);
 const editTitle = $elem('#edit-title');
 const editContent = $elem("#edit-blog-content");
 const editButton = $elem(".edit-button");
+const noItems = $elem('#no-items');
 
 const generate_slug = (title) => {
     // create a slug to uniquely identify an blog post
@@ -23,7 +24,6 @@ const generate_slug = (title) => {
     return `${title}-${Math.floor((Math.random() * 140) + 1)}`
 }
 
-const setEditButtons = (buttons) => { editButtons = buttons; }
 
 
 blogAddForm.addEventListener('submit', e => {
@@ -41,6 +41,7 @@ blogAddForm.addEventListener('submit', e => {
     // add the created item into the store
     blogItems.push(blogItem)
     localStorage.setItem('blogItems', JSON.stringify(blogItems))
+    if(blogItems.length) noItems.style.display = "none";
 
     // create a new item and add it to the dom
     blogItems.forEach(item => {
@@ -66,7 +67,7 @@ blogAddForm.addEventListener('submit', e => {
         del.innerHTML = `Delete <i class="material-icons right">delete<i>`
         edit.innerHTML = `Edit <i class="material-icons right">edit<i>`
 
-        del.classList.add("btn", "red", "right");
+        del.classList.add("btn", "red", "right", "delete");
         edit.classList.add("btn", "orange", "edit-button", `${item.slug}`);
         foot.className = "card-action";
 
@@ -96,14 +97,30 @@ blogAddForm.addEventListener('submit', e => {
 
                 // // populate the fields
                 const itemToEdit = blogItems.find(item => item.slug == itemSlug)
-                const {title, content} = itemToEdit;
+                const { title, content } = itemToEdit;
                 editContent.value = content
                 editTitle.value = title
-               
+
                 // show the edit modal
                 edit_modal.open();
             })
         }
+    }
+
+    // handle deletion of blog items
+    const deleteButtons = $elems('button.delete')
+    if (deleteButtons) {
+        for (let button of deleteButtons) {
+            button.addEventListener("click", e => {
+                e.preventDefault()
+                let itemSlug = e.target.parentElement.parentElement.id;
+                blogItems = blogItems.filter(item => item.slug != itemSlug)
+                e.target.parentElement.parentElement.style.display = "none";
+                localStorage.setItem('blogItems', JSON.stringify(blogItems))
+                if(!blogItems.length) noItems.style.display = "block";
+            })
+        }
+
     }
 
     // clear the form and close the modal
