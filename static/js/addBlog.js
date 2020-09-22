@@ -34,7 +34,7 @@ blogAddForm.addEventListener('submit', e => {
             title: title.value,
             content: content.value,
             slug: generate_slug(title.value),
-            createdAt: new Date().toDateString()
+            createdAt: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`
         }
     }
 
@@ -54,10 +54,9 @@ blogAddForm.addEventListener('submit', e => {
         const foot = $newElem('div');
 
         // style the item
-        card.classList.add("col", "s12", "m4", "l6", "card");
+        card.classList.add("col", "s12", "m6", "l6", "card");
         p.className = "flow-text";
         h.style.textTransform = "uppercase";
-        h.className = "center";
         card.setAttribute('id', item.slug)
 
         // add content

@@ -7,23 +7,25 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
-<body>
+<body class="grey lighten-2">
     <header>
         <nav>
             <div class="nav-wrapper blue-grey">
               <a href="#" class="brand-logo">Blogme</a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#">View</a></li>
-                <li> <a class="waves-effect purple  btn modal-trigger" href="#new-item">New POST<i class="material-icons right">add</i></a></li>
+                <li> <a class="waves-effect teal  btn modal-trigger" href="#new-item">New POST<i class="material-icons right">add</i></a></li>
               </ul>
             </div>
           </nav>
     </header>
     <main>
+  <div class="container">
+    <h3 class="center">Blog me => <a class="waves-effect teal  btn modal-trigger" href="#new-item">New Post<i class="material-icons right">add</i></a></h3>
+    <p id="no-items" class="flow-text center">Write your first blog post by clicking the button above.</p></div>
   
-  <div class="container row blog-container"></div>
-  <h3 class="center">Blog me => <a class="waves-effect purple  btn modal-trigger" href="#new-item">New Item<i class="material-icons right">add</i></a></h3>
-  <p id="no-items" class="flow-text center">Write your first blog post by clicking the button above.</p>
+    <div class="row blog-container"></div>
+
   <!-- Modal Structure -->
   <div id="new-item" class="modal">
     <div class="modal-content">
