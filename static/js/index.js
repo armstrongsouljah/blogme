@@ -2,6 +2,8 @@ const $elem = (selector) => document.querySelector(selector)
 const $elems = (selector) => document.querySelectorAll(selector)
 const $newElem = (elem) => document.createElement(elem);
 
+let editButtons;
+
 // initialize blog data
 localStorage.setItem('blogItems', JSON.stringify([]))
 
