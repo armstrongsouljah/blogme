@@ -15,7 +15,6 @@
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#">View</a></li>
                 <li> <a class="waves-effect purple  btn modal-trigger" href="#new-item">New Item<i class="material-icons right">add</i></a></li>
-                <!-- <li><a href="#">Logout</a></li> -->
               </ul>
             </div>
           </nav>
@@ -47,14 +46,37 @@
           </form>
         </div>
     </div>
-    <!-- <div class="modal-footer"> -->
-     
-      <!-- <button class=" save-btn waves-effect waves-green btn btn-teal">save <i class="material-icons right">check_circle</i></button> -->
-    <!-- </div> -->
   </div>
+
+  <!-- edit modal -->
+    <!-- Modal Structure -->
+    <div id="edit-item" class="modal">
+      <div class="modal-content">
+        <h4 class="center">Edit Blog Item</h4>
+          <div class="row">
+            <form class="col s12" id="blogeditform" method="POST">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input placeholder="blog title" id="edit-title" type="text" class="validate">
+                  <label for="edit-title">Title</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="edit-blog-content" class="materialize-textarea"></textarea>
+                  <label for="blog-content">Content</label>
+                </div>
+              </div>
+              <button type="submit" class="edit-btn waves-effect waves-green btn btn-teal">save <i class="material-icons right">check_circle</i></button>
+              <button type="reset" class=" cancel-btn red btn btn-small">Cancel <i class="material-icons right">cancel</i></button>
+            </form>
+          </div>
+      </div>
+    </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="static/js/index.js"></script>
     <script src="static/js/addBlog.js"></script>
+    <script src="static/js/editBlog.js"></script>
 </body>
 </html>

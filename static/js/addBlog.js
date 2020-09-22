@@ -1,27 +1,35 @@
 const blogAddForm = $elem('#blogaddform');
 const blogSaveBtn = $elem('.save-btn');
 const blogCancelBtn = $elem('.cancel-btn');
-const elem = $elem('#new-item'); 
+const elem = $elem('#new-item');
 const title = $elem('#title');
 const content = $elem('#blog-content');
 const add_modal = M.Modal.getInstance(elem);
 const blogItems = JSON.parse(localStorage.getItem('blogItems'));
 const itemsContainer = $elem(".blog-container");
+const editElem = $elem('#edit-item');
+const edit_modal = M.Modal.getInstance(editElem);
+const editTitle = $elem('#edit-title');
+const editContent = $elem("#edit-blog-content");
+const editButton = $elem(".edit-button");
 
 const generate_slug = (title) => {
+    // create a slug to uniquely identify an blog post
     let split_title = title.split(" ")
-    if(split_title.length>1) {
+    if (split_title.length > 1) {
         const new_title = `${split_title[0]} ${split_title[1]} ${Math.floor((Math.random() * 140) + 1)}`
         return new_title.replace(/\s/g, '-');
     }
     return `${title}-${Math.floor((Math.random() * 140) + 1)}`
 }
 
+const setEditButtons = (buttons) => { editButtons = buttons; }
+
 
 blogAddForm.addEventListener('submit', e => {
     e.preventDefault();
     let blogItem;
-    if(title.value && content.value) {
+    if (title.value && content.value) {
         blogItem = {
             title: title.value,
             content: content.value,
@@ -59,8 +67,10 @@ blogAddForm.addEventListener('submit', e => {
         edit.innerHTML = `Edit <i class="material-icons right">edit<i>`
 
         del.classList.add("btn", "red", "right");
-        edit.classList.add("btn", "orange");
+        edit.classList.add("btn", "orange", "edit-button", `${item.slug}`);
         foot.className = "card-action";
+
+        edit.setAttribute('id', item.slug)
 
 
         card.appendChild(h);
@@ -72,9 +82,30 @@ blogAddForm.addEventListener('submit', e => {
 
         // add item to DOM
         let added_item = $elem(`#${item.slug}`)
-        if(!added_item) itemsContainer.appendChild(card)
+        if (!added_item) itemsContainer.appendChild(card)
     });
-    
+
+    editButtons = $elems('button.orange');
+    if (editButtons) {
+        for (let button of editButtons) {
+            button.addEventListener("click", e => {
+                e.preventDefault()
+                // console.log(e.target.id)
+                let itemSlug = e.target.id
+                localStorage.setItem('edit', itemSlug)
+
+                // // populate the fields
+                const itemToEdit = blogItems.find(item => item.slug == itemSlug)
+                const {title, content} = itemToEdit;
+                editContent.value = content
+                editTitle.value = title
+               
+                // show the edit modal
+                edit_modal.open();
+            })
+        }
+    }
+
     // clear the form and close the modal
     setTimeout(blogAddForm.reset(), 2000)
 })
