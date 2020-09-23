@@ -1,35 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogme</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogme</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
+
 <body class="grey lighten-2">
-    <header>
-        <nav>
-            <div class="nav-wrapper blue-grey">
-              <a href="#" class="brand-logo">Blogme</a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">View</a></li>
-                <li> <a class="waves-effect teal  btn modal-trigger" href="#new-item">New POST<i class="material-icons right">add</i></a></li>
-              </ul>
+  <header id="navigation">
+    <nav>
+      <div class="nav-wrapper blue-grey">
+        <a href="#" class="brand-logo">Blogme</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li> <a class="waves-effect teal  btn modal-trigger" href="#new-item">New POST<i
+                class="material-icons right">add</i></a></li>
+                <li><a id="logout" href="#">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- authentication component -->
+    <div class="row" id="authentication">
+      <div class="col s12 m6 l6 offset-m3 offset-l3 blue-grey white-text">
+        <ul class="tabs blue-grey white-text">
+          <li class="tab col s3"><a href="#login" class="white-text">Login</a></li>
+          <li class="tab col s3"><a href="#signup" class="white-text">SIGNUP</a></li>
+        </ul>
+      </div>
+      <div id="login" class="col s12">
+        <!-- login form -->
+        <div class="row">
+          <form class="col s12 m6 l6 offset-m3 offset-l3" id="loginform" method="POST">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="login_username" type="text" class="validate">
+                <label for="login_username">Username</label>
+              </div>
             </div>
-          </nav>
-    </header>
-    <main>
-  <div class="container">
-    <h3 class="center">Blog me => <a class="waves-effect teal  btn modal-trigger" href="#new-item">New Post<i class="material-icons right">add</i></a></h3>
-    <p id="no-items" class="flow-text center">Write your first blog post by clicking the button above.</p></div>
-  
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="login_password" type="password" class="validate">
+                <label for="login_password">Password</label>
+              </div>
+
+            </div>
+            <div class="col s12 red-text" id="lname_error">
+            </div>
+            <input type="submit" value="Login" class="btn btn-teal" />
+
+          </form>
+        </div>
+      </div>
+      <div id="signup" class="col s12">
+        <!-- signup form -->
+        <div class="row">
+          <form class="col s12 m6 l6 offset-m3 offset-l3" id="signupform" method="POST">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="signup_username" type="text" class="validate">
+                <label for="signup_username">Username</label>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="signup_password" type="password" class="validate">
+                <label for="signup_password">Password</label>
+              </div>
+            </div>
+            <div class="col s12 red-text" id="sname_error">
+            </div>
+            <div class="col s12 green-text" id="success">
+            </div>
+            <input type="submit" value="Signup" class="btn btn-teal" />
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- logged in intro -->
+    <div class="container" id="intro">
+      <h3 class="center">Blog me => <a class="waves-effect teal  btn modal-trigger" href="#new-item">New Post<i
+            class="material-icons right">add</i></a></h3>
+      <p id="no-items" class="flow-text center">Write your first blog post by clicking the button above.</p>
+    </div>
+
     <div class="row blog-container"></div>
 
-  <!-- Modal Structure -->
-  <div id="new-item" class="modal">
-    <div class="modal-content">
-      <h4 class="center">Add Blog Item</h4>
+    <!-- Modal Structure -->
+    <div id="new-item" class="modal">
+      <div class="modal-content">
+        <h4 class="center">Add Blog Item</h4>
         <div class="row">
           <form class="col s12" id="blogaddform" method="POST">
             <div class="row">
@@ -44,42 +110,48 @@
                 <label for="blog-content">Content</label>
               </div>
             </div>
-            <button type="submit" class=" save-btn waves-effect waves-green btn btn-teal">save <i class="material-icons right">check_circle</i></button>
-            <button type="reset" class=" cancel-btn red btn btn-small">Cancel <i class="material-icons right">cancel</i></button>
+            <button type="submit" class=" save-btn waves-effect waves-green btn btn-teal">save <i
+                class="material-icons right">check_circle</i></button>
+            <button type="reset" class=" cancel-btn red btn btn-small">Cancel <i
+                class="material-icons right">cancel</i></button>
           </form>
         </div>
+      </div>
     </div>
-  </div>
 
-  <!-- edit modal -->
+    <!-- edit modal -->
     <!-- Modal Structure -->
     <div id="edit-item" class="modal">
       <div class="modal-content">
         <h4 class="center">Edit Blog Item</h4>
-          <div class="row">
-            <form class="col s12" id="blogeditform" method="POST">
-              <div class="row">
-                <div class="input-field col s12">
-                  <input placeholder="blog title" id="edit-title" type="text" class="validate">
-                  <label for="edit-title">Title</label>
-                </div>
+        <div class="row">
+          <form class="col s12" id="blogeditform" method="POST">
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="blog title" id="edit-title" type="text" class="validate">
+                <label for="edit-title">Title</label>
               </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="edit-blog-content" class="materialize-textarea"></textarea>
-                  <label for="blog-content">Content</label>
-                </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="edit-blog-content" class="materialize-textarea"></textarea>
+                <label for="blog-content">Content</label>
               </div>
-              <button type="submit" class="edit-btn waves-effect waves-green btn btn-teal">save <i class="material-icons right">check_circle</i></button>
-              <button type="reset" class=" cancel-btn red btn btn-small">Cancel <i class="material-icons right">cancel</i></button>
-            </form>
-          </div>
+            </div>
+            <button type="submit" class="edit-btn waves-effect waves-green btn btn-teal">save <i
+                class="material-icons right">check_circle</i></button>
+            <button type="reset" class=" cancel-btn red btn btn-small">Cancel <i
+                class="material-icons right">cancel</i></button>
+          </form>
+        </div>
       </div>
     </div>
-    </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="static/js/index.js"></script>
-    <script src="static/js/addBlog.js"></script>
-    <script src="static/js/editBlog.js"></script>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="static/js/addBlog.js"></script>
+  <script src="static/js/editBlog.js"></script>
+  <script src="static/js/auth.js"></script>
 </body>
+
 </html>
