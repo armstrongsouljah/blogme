@@ -6,6 +6,7 @@ A simple blog application created using plain JavaScript, CSS and HTML
 - Listing blog Items
 - Editing a single blog item
 - Deleting a blog item
+- Simple DOM based authentication
 
 #### Author
 - @armstrongsouljah
