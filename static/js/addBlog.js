@@ -63,8 +63,8 @@ blogAddForm.addEventListener('submit', e => {
         h.innerText = item.title;
         p.innerText = item.content;
         quote.innerText = `Posted on: ${item.createdAt}`
-        del.innerHTML = `Delete <i class="material-icons right">delete<i>`
-        edit.innerHTML = `Edit <i class="material-icons right">edit<i>`
+        del.innerHTML = `Delete`
+        edit.innerHTML = `Edit`
 
         del.classList.add("btn", "red", "right", "delete");
         edit.classList.add("btn", "orange", "edit-button", `${item.slug}`);

@@ -15,7 +15,6 @@ const users = JSON.parse(localStorage.getItem('users'));
 // handle user registration
 signupForm.addEventListener('submit', e => {
     e.preventDefault()
-    console.log('signing up')
     const username = signupUsername.value;
     const password = signupPassword.value;
 
@@ -25,7 +24,6 @@ signupForm.addEventListener('submit', e => {
     }
 
     const user = {username, password}
-    console.log(user)
     let userIndex = users.findIndex(user => user.username == username)
     if( userIndex == -1) users.push(user)
 
@@ -57,6 +55,7 @@ loginForm.addEventListener('submit', e => {
     }
     if(!users.length){
         lError.innerText = "No account with these details, Please create an account";
+        loginForm.reset()
         setTimeout(() =>lError.innerText= "", 2000);
     }
 
